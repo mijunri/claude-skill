@@ -14,6 +14,7 @@ Skill 是 `.claude/skills/<技能名>/SKILL.md` 中的指令文档。当任务�
 | 数据库脚本、SQL、查询、迁移、db_scripts | `.claude/skills/database/SKILL.md` |
 | 临时脚本、一次性任务、排查脚本、temp_scripts | `.claude/skills/temp_scripts/SKILL.md` |
 | 日志、日志目录、日志格式、HTTP 日志、DB 日志 | `.claude/skills/logging/SKILL.md` |
+| 服务器、SSH、远程操作、部署 | `.claude/skills/server_ops/SKILL.md` |
 
 ## 引用方式
 
