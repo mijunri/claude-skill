@@ -1,60 +1,36 @@
 # claude-skill
 
-Claude 可复用的技能指令集，存放在 `.claude/skills/` 目录下。每个技能是一组预设指令，可在对话中引用以指导 Claude 按特定方式完成任务。
-
-## Claude Skill 用法
-
-### 什么是 Claude Skill？
-
-Skill 是预先编写好的指令文件（`SKILL.md`），包含某类任务的执行规范。在 Cursor 或 Claude 对话中引用 Skill 后，AI 会遵循其中的规则和流程来协助你。
-
-### 如何引用 Skill？
-
-1. **在对话中输入 `@`**，触发引用菜单
-2. **输入技能名称**（如 `database_ops`、`code_review`）或选择对应文件
-3. **或直接输入路径**：`@.claude/skills/database_ops/SKILL.md`
-
-引用后，Claude 会加载该 Skill 的指令并在后续回答中应用。
-
-### 使用场景示例
-
-- 代码审查：`@code_review` 请审查这段代码
-- 重构代码：`@refactor` 帮我重构这个函数
-- 写测试：`@testing` 为这个模块写单元测试
-- 写提交信息：`@git_commit` 帮我写 commit message
-- 查 Bug：`@debug` 这段代码报错，帮我排查
-- 安全检查：`@security_check` 检查这段代码的安全问题
-- 数据库相关：`@database_ops` 优化这个查询
-
-### 组合使用
-
-可以同时引用多个 Skill，例如：`@code_review @security_check` 请从代码质量和安全两方面审查。
+可复用的 AI 技能指令集，供集成到任意项目中。
 
 ---
 
-## 目录结构
+## 致 AI：Skill 所在位置与使用方式
 
-```
-.claude/skills/
-├── database_ops/SKILL.md   # 数据库操作
-├── code_review/SKILL.md    # 代码审查
-├── refactor/SKILL.md       # 重构
-├── documentation/SKILL.md  # 文档编写
-├── testing/SKILL.md        # 测试编写
-├── git_commit/SKILL.md     # Git 提交
-├── debug/SKILL.md          # 调试
-└── security_check/SKILL.md # 安全审查
-```
+本项目包含一组 **Skill** 文件，位于 `.claude/skills/<技能名>/SKILL.md`。每个 SKILL.md 是一份**任务执行规范**，请在相关任务中**主动读取并遵循**其中的指令。
 
-## 可用技能
+### Skill 路径一览
 
-| 技能 | 路径 | 用途 |
-|------|------|------|
-| 数据库操作 | `database_ops` | 查询优化、事务、安全、迁移 |
-| 代码审查 | `code_review` | 系统化代码审查 |
-| 重构 | `refactor` | 安全、小步的重构指导 |
-| 文档编写 | `documentation` | README、API、设计文档规范 |
-| 测试编写 | `testing` | 单元/集成测试实践 |
-| Git 提交 | `git_commit` | 规范的 commit message 格式 |
-| 调试 | `debug` | 系统化问题排查方法 |
-| 安全审查 | `security_check` | 常见安全漏洞检查 |
+| 用户需求 / 任务类型 | 应读取的 Skill 文件 |
+|-------------------|---------------------|
+| 代码审查、review | `.claude/skills/code_review/SKILL.md` |
+| 重构代码、refactor | `.claude/skills/refactor/SKILL.md` |
+| 编写测试、写测试 | `.claude/skills/testing/SKILL.md` |
+| 写 commit message、提交信息 | `.claude/skills/git_commit/SKILL.md` |
+| 排查 bug、调试、debug | `.claude/skills/debug/SKILL.md` |
+| 数据库操作、SQL、查询优化、迁移 | `.claude/skills/database_ops/SKILL.md` |
+| 安全检查、安全审查 | `.claude/skills/security_check/SKILL.md` |
+| 写文档、README、API 文档 | `.claude/skills/documentation/SKILL.md` |
+
+### 使用方式
+
+1. 当用户提出与上表匹配的需求时，**先读取对应的 SKILL.md 文件**
+2. 按照该文件中的规则、流程和输出格式完成任务
+3. 若用户同时涉及多类任务（如「审查并检查安全」），请读取多个 Skill 并综合应用
+
+例如：用户说「帮我审查这段代码」，应读取 `.claude/skills/code_review/SKILL.md`，再按其中的审查维度和输出格式进行回答。
+
+---
+
+## 集成说明（给人看）
+
+将 `.claude/skills/` 目录复制到你的项目中即可。AI 在读取项目 README 后，会知道 Skill 的位置并在相关任务中自动加载。
