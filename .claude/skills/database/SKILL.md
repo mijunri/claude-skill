@@ -12,6 +12,11 @@ description: 数据库脚本与操作规范。脚本放在 db_scripts 目录，�
 - 所有数据库脚本（迁移、初始化、修复、查询等）置于 `db_scripts/`
 - 可按子目录组织，如 `db_scripts/migrations/`、`db_scripts/init/` 等
 
+## 命名规范
+
+- 格式：`YYYYMMDD_功能描述.扩展名`，日期开头，下划线后接功能
+- 示例：`20250213_add_user_table.sql`、`20250213_fix_order_status.sql`
+
 ## 查询优化
 
 1. **避免 N+1** - 使用 JOIN、批量查询或预加载（eager load）

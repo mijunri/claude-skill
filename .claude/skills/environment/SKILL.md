@@ -1,11 +1,25 @@
 ---
 name: environment
-description: 项目环境配置规范。使用 .env 存实际环境配置，dev.env 存开发环境配置；脚本归类到 db_scripts、temp_scripts。
+description: 项目环境配置规范。使用 .env 存实际环境配置，dev.env 存开发环境配置；project.yaml 存项目名与 GitHub 路径。
 ---
 
 # 项目环境配置 Skill
 
-处理项目环境与目录结构时遵循以下规范。
+处理项目环境配置时遵循以下规范。
+
+## 项目信息
+
+| 文件 | 用途 | 是否提交 |
+|------|------|----------|
+| `project.yaml` | 项目名称、GitHub 仓库路径等基础信息 | 是 |
+
+**示例：**
+```yaml
+# project.yaml
+name: my-project
+github: https://github.com/owner/repo
+# 或简写：owner/repo
+```
 
 ## 环境配置
 
@@ -19,27 +33,12 @@ description: 项目环境配置规范。使用 .env 存实际环境配置，dev.
 - `.env` 不得提交，在 `.gitignore` 中显式忽略
 - 可提供 `.env.example` 列出所需变量名（不含实际值），供他人参考
 
-## 脚本目录
-
-| 目录 | 用途 |
-|------|------|
-| `db_scripts/` | 数据库相关脚本（迁移、初始化、数据修复等） |
-| `temp_scripts/` | 临时脚本（一次性任务、排查用脚本等） |
-
-**规则：**
-- 数据库脚本统一放在 `db_scripts/`
-- 临时脚本放在 `temp_scripts/`，用毕可删除或标注废弃
-- 其他持久化脚本按项目约定放置（如 `scripts/`）
-
 ## 目录结构示例
 
 ```
 项目根目录/
+├── project.yaml      # 项目名称、GitHub 路径
 ├── .env              # 实际环境（不提交）
 ├── dev.env           # 开发环境
-├── .env.example      # 变量清单（可选）
-├── db_scripts/       # 数据库脚本
-│   ├── migrations/
-│   └── ...
-└── temp_scripts/     # 临时脚本
+└── .env.example      # 变量清单（可选）
 ```
