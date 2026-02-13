@@ -9,7 +9,7 @@ description: 日志规范。时间戳、HTTP 出入参、数据库 SQL、第三�
 
 ## 日志目录
 
-- 所有日志输出到指定目录，如 `logs/`（可按环境区分子目录，如 `logs/dev/`、`logs/prod/`）
+- 所有日志输出到指定目录，如 `logs/`
 - 日志目录需在 `project.yaml` 或环境变量中配置
 
 ## 格式要求
